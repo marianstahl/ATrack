@@ -76,8 +76,8 @@ int main(int argc, char **argv){
   else{
     comb_center = center_VT.at(0);
     comb_unc = unc_VT.at(0);
-    comb_Long = center_Long.at(0);
-    comb_unc_Long = unc_Long.at(0);
+    Long_center = center_Long.at(0);
+    Long_unc = unc_Long.at(0);
   }
 
 

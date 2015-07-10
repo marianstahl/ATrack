@@ -3,7 +3,7 @@
   \date July, 1st 2015
   \author Marian Stahl
   \class configuration
-  \brief Change settings here if needed. Line 125ff : hardcoded stuff such as directories, file names, variable names, fitparameters etc.
+  \brief Change settings here if needed. Line 139ff : hardcoded stuff such as directories, file names, variable names, fitparameters etc.
 
 */
 
