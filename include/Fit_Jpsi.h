@@ -290,6 +290,7 @@ double* Fit_Jpsi_nsim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooD
     }
     if(bins_gt_threshold >= 2){
       cerr << "\033[0;31mPulls too high in plusdatapass \033[0m" << endl << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
       //return NULL;
     }
   }
@@ -417,6 +418,7 @@ double* Fit_Jpsi_nsim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooD
     }
     if(bins_gt_threshold >= 2){
       cerr << "\033[0;31mPulls too high in plusdatafail \033[0m" << endl << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
       //return NULL;
     }
   }
@@ -585,6 +587,7 @@ double* Fit_Jpsi_nsim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooD
     }
     if(bins_gt_threshold >= 2){
       cerr << "\033[0;31mPulls too high in minusdatapass\033[0m" << endl << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
       //return NULL;
     }
   }
@@ -700,6 +703,7 @@ double* Fit_Jpsi_nsim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooD
     }
     if(bins_gt_threshold >= 2){
       cerr << "\033[0;31mPulls too high in minusdatafail \033[0m" << endl << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
       //return NULL;
     }
   }
@@ -825,6 +829,7 @@ double* Fit_Jpsi_nsim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooD
     if(epsilonplus + delta_epsilonplus > 1){
       efficiencies[1] = delta_epsilonplus;
       if(myconfig->get_verbosity() > 0)cout << "efficiency + upper uncertainty exceeds 1, be careful" << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
     }
     if(epsilonplus - delta_epsilonplus < 0){
       cout << "efficiency - lower uncertainty smaller than 0, this shouldn't happen - return NULL!" << endl;
@@ -837,6 +842,7 @@ double* Fit_Jpsi_nsim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooD
     if(epsilonminus + delta_epsilonminus > 1){
       efficiencies[3] = delta_epsilonplus;
       if(myconfig->get_verbosity() > 0)cout << "efficiency + upper uncertainty exceeds 1, be careful" << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
     }
     if(epsilonminus - delta_epsilonminus < 0){
       cout << "efficiency - lower uncertainty smaller than 0, this shouldn't happen - return NULL!" << endl;
@@ -1092,6 +1098,7 @@ double* Fit_Jpsi_sim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooDa
     }
     if(bins_gt_threshold >= 2){
       cerr << "\033[0;31mPulls too high in plusdatapass \033[0m" << endl << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
       //terminate();
     }
   }
@@ -1177,6 +1184,7 @@ double* Fit_Jpsi_sim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooDa
     }
     if(bins_gt_threshold >= 2){
       cerr << "\033[0;31mPulls too high in plusdatafail \033[0m" << endl << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
       //terminate();
     }
   }
@@ -1311,6 +1319,7 @@ double* Fit_Jpsi_sim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooDa
     }
     if(bins_gt_threshold >= 2){
       cerr << "\033[0;31mPulls too high in minusdatapass\033[0m" << endl << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
       //return NULL;
     }
   }
@@ -1384,6 +1393,7 @@ double* Fit_Jpsi_sim(RooDataHist *plusdatapass, RooDataHist *plusdatafail, RooDa
     }
     if(bins_gt_threshold >= 2){
       cerr << "\033[0;31mPulls too high in minusdatafail \033[0m" << endl << endl;
+      cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
       //terminate();
     }
   }
@@ -1576,6 +1586,7 @@ Currenty 3 levels of checks and refits are implemented (maybe this could be solv
               if ((fitres_refitstatlimstat -> status() != 0 && fitres_refitstatlimstat->edm() > maxedm) || errcheck(posis) == false || paratlimit(vars_for_convcheck) == false) {
                 cerr << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (statuscheck or bad uncertainties) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
                 cout << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (statuscheck or bad uncertainties) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
+                cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
                 return false;
               }
               return true;
@@ -1590,6 +1601,7 @@ Currenty 3 levels of checks and refits are implemented (maybe this could be solv
               if ((fitres_refitstat2lim -> status() != 0 && fitres_refitstat2lim->edm() > maxedm) || errcheck(posis) == false || paratlimit(vars_for_convcheck) == false) {
                 cerr << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (parameter reached limits) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
                 cout << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (parameter reached limits) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
+                cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
                 return false;
               }
               return true;
@@ -1615,6 +1627,7 @@ Currenty 3 levels of checks and refits are implemented (maybe this could be solv
               if ((fitres_refit2statlim -> status() != 0 && fitres_refit2statlim->edm() > maxedm)|| errcheck(posis) == false || paratlimit(vars_for_convcheck) == false) {
                 cerr << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (parameter reached limits) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
                 cout << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (parameter reached limits) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
+                cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
                 return false;
               }
               return true;
@@ -1628,6 +1641,7 @@ Currenty 3 levels of checks and refits are implemented (maybe this could be solv
               if ((fitres_refit3stat -> status() != 0 && fitres_refit3stat->edm() > maxedm) || errcheck(posis) == false || paratlimit(vars_for_convcheck) == false) {
                 cerr << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (statuscheck or bad uncertainties) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
                 cout << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (statuscheck or bad uncertainties) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
+                cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
                 return false;
               }
               return true;
@@ -1667,6 +1681,7 @@ Currenty 3 levels of checks and refits are implemented (maybe this could be solv
               if ((fitres_refitlimstatlim -> status() != 0 && fitres_refitlimstatlim->edm() > maxedm) || errcheck(posis) == false || paratlimit(vars_for_convcheck) == false) {
                 cerr << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (parameter reached limits) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
                 cout << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (parameter reached limits) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
+                cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
                 return false;
               }
               return true;
@@ -1680,6 +1695,7 @@ Currenty 3 levels of checks and refits are implemented (maybe this could be solv
               if ((fitres_refitlim2stat -> status() != 0 && fitres_refitlim2stat->edm() > maxedm) || errcheck(posis) == false || paratlimit(vars_for_convcheck) == false) {
                 cerr << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (statuscheck or bad uncertainties) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
                 cout << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (statuscheck or bad uncertainties) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
+                cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
                 return false;
               }
               return true;
@@ -1706,6 +1722,7 @@ Currenty 3 levels of checks and refits are implemented (maybe this could be solv
               if ((fitres_refit2limstat -> status() != 0 && fitres_refit2limstat->edm() > maxedm) || errcheck(posis) == false || paratlimit(vars_for_convcheck) == false) {
                 cerr << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (statuscheck or bad uncertainties) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
                 cout << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (statuscheck or bad uncertainties) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
+                cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
                 return false;
               }
               return true;
@@ -1720,6 +1737,7 @@ Currenty 3 levels of checks and refits are implemented (maybe this could be solv
               if ((fitres_refit3lim -> status() != 0 && fitres_refit3lim->edm() > maxedm) || errcheck(posis) == false || paratlimit(vars_for_convcheck) == false) {
                 cerr << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (parameter reached limits) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
                 cout << endl << endl << "\033[1;31m>>>>>>>>>> ERROR: Last attempt to fit  (parameter reached limits) did not converge! There is no hope for this one. Something has to be done by hand!\033[0m" << endl;
+                cout << "was at dim1_binlo " << myconfig->get_dim1_binlo() << " dim1_binhi " << myconfig->get_dim1_binhi() << " dim2_binlo " << myconfig->get_dim2_binlo() << " dim2_binhi " << myconfig->get_dim2_binhi() << endl;
                 return false;
               }
               return true;

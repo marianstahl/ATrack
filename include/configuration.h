@@ -176,18 +176,18 @@ public:
     fitparams.MJpsistart = 3098; fitparams.MJpsilo = 3092; fitparams.MJpsihi = 3104;
     // sigma's
     fitparams.sigma1start = 20; fitparams.sigma1lo = 10; fitparams.sigma1hi = 40;
-    fitparams.wfstart = 1.5; fitparams.wflo = 1.3; fitparams.wfhi = 2.1;
+    fitparams.wfstart = 1.6; fitparams.wflo = 1.3; fitparams.wfhi = 2.2;
     fitparams.fixCBn = 2.0; fitparams.fixwf = 1.6;
     fitparams.CBalphastart = 2.1; fitparams.CBalphalo = 0.5; fitparams.CBalphahi = 6.0;
     //Background
-    fitparams.chebastart = -0.3; fitparams.chebalo = -0.9; fitparams.chebahi = 0.9;
-    fitparams.chebbstart = -0.03; fitparams.chebblo = -0.3; fitparams.chebbhi = 0.3;
-    fitparams.chebcstart = 0.002; fitparams.chebclo = -0.1; fitparams.chebchi = 0.1;
+    fitparams.chebastart = -0.2; fitparams.chebalo = -0.9; fitparams.chebahi = 0.9;
+    fitparams.chebbstart = -0.1; fitparams.chebblo = -0.4; fitparams.chebbhi = 0.4;
+    fitparams.chebcstart = -0.02; fitparams.chebclo = -0.1; fitparams.chebchi = 0.1;
     fitparams.taustart = -0.001; fitparams.taulo = -0.1; fitparams.tauhi = 0.1;
     //normalizations
     fitparams.sfracstart = 0.5; fitparams.sfraclo = 0.25; fitparams.sfrachi = 0.75;
-    fitparams.Jpsisig1start = 15000; fitparams.Jpsisiglo = 500; fitparams.Jpsisighi = 3.5e+5;
-    fitparams.bkgstart = 10000; fitparams.bkglo = 100; fitparams.bkghi = 2e+6;
+    fitparams.Jpsisig1start = 4000; fitparams.Jpsisiglo = 0.0; fitparams.Jpsisighi = 3.5e+5;
+    fitparams.bkgstart = 10000; fitparams.bkglo = 0.0; fitparams.bkghi = 2e+6;
     //efficiency
     fitparams.effstart = 0.97 ;fitparams.efflo = 0.8 ;fitparams.effhi = 1.0;
     //asymmetry(for simultaneous fits)
@@ -504,6 +504,13 @@ public:
     else return "";
   }
 
+  TString get_dim1_symbol(){
+    if(dim1.CompareTo("PT") == 0)return "p_{T}";
+    else if(dim1.CompareTo("ETA") == 0)return "#eta";
+    else if(dim1.CompareTo("P") == 0)return "p";
+    else return "";
+  }
+
   TString get_dim2_alias(){
     if(dim2.CompareTo("PT") == 0)return "PT";
     else if(dim2.CompareTo("ETA") == 0)return "eta";
@@ -518,15 +525,28 @@ public:
     else return "";
   }
 
+  TString get_dim2_symbol(){
+    if(dim2.CompareTo("PT") == 0)return "p_{T}";
+    else if(dim2.CompareTo("ETA") == 0)return "#eta";
+    else if(dim2.CompareTo("P") == 0)return "p";
+    else return "";
+  }
+
   void fill_dim1_binvector(double binedge){dim1_binedge_vector.push_back(binedge);}
   void fill_dim2_binvector(double binedge){dim2_binedge_vector.push_back(binedge);}
   vector<double> get_dim1_binedges(){return dim1_binedge_vector;}
   vector<double> get_dim2_binedges(){return dim2_binedge_vector;}
   void clear_binning(){dim1_binedge_vector.clear();dim2_binedge_vector.clear();return;}
 
-  void set_dim1_bin(double binlo, double binhi){
+  template<class floatlike>
+  void set_dim1_bin(floatlike binlo, floatlike binhi){
     dim1_binlo = binlo;dim1_binhi = binhi;
   }
+  template<class floatlike>
+  void set_dim2_bin(floatlike binlo, floatlike binhi){
+    dim2_binlo = binlo;dim2_binhi = binhi;
+  }
+
   template<class intlike>
   void set_dim1_bin(intlike binnumber){
     dim1_binlo = dim1_binedge_vector.at(binnumber);dim1_binhi = dim1_binedge_vector.at(binnumber + 1);

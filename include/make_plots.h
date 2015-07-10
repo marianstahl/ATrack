@@ -153,6 +153,9 @@ void make_1D_plots(const dten3 &A_raw, dten3 &delta_A_raw, configuration *myconf
   VT_comb_hist->GetYaxis()->SetRangeUser(-ymax,ymax);
   for(int ji = 0; ji < myconfig->get_nsamples()/2; ji++){VT_hists_by_year.at(ji)->GetYaxis()->SetRangeUser(-ymax,ymax);}
 
+  temp = myconfig->get_dumpdir() + "Plots";
+  if(!gSystem->OpenDirectory(temp))gSystem->mkdir(temp);
+
   make_a_plot(VT_Up_hist,VT_Down_hist,VT_comb_hist,myconfig);
   make_a_plot(VT_Up_hist,VT_Down_hist,myconfig);
   make_a_plot(VT_comb_hist,A_raw_VT,delta_A_raw_VT,myconfig);
@@ -230,7 +233,7 @@ void make_a_plot(TH1D *Up_hist, TH1D *Down_hist, TH1D *Comb_hist, configuration 
 
 void make_a_plot(vector<TH1D*> hists, TH1D *Comb_hist, configuration *myconfig){
 
-  if(hists.size() > 2){cout << "Sorry, but plotting is only implemented for 11 and 12 data" << endl; return;}
+  if(hists.size() != 2){cout << "Sorry, but this plot is only implemented for 11 AND 12 data" << endl; return;}
 
   TCanvas* cVT = new TCanvas("cVT","Canvas",10,10,1280,960) ;
   gPad->SetTopMargin(0.03);
@@ -289,7 +292,6 @@ void make_a_plot(vector<TH1D*> hists, TH1D *Comb_hist, configuration *myconfig){
   leg->Draw();
 
   temp = myconfig->get_dumpdir() + "Plots/1112Combined_asymmetries_" + myconfig->get_bw() + ".pdf";
-
   cVT->SaveAs(temp);
   delete cVT;
   return;
@@ -357,7 +359,7 @@ void make_a_plot(TH1D *Up_hist, TH1D *Down_hist, configuration *myconfig){
 
 void make_a_plot(vector <TH1D*> hists, configuration *myconfig){
 
-  if(hists.size() > 2){cout << "Sorry, but plotting is only implemented for 11 and 12 data" << endl; return;}
+  if(hists.size() != 2){cout << "Sorry, but this plot is only implemented for 11 AND 12 data" << endl; return;}
 
   TCanvas* cVT = new TCanvas("cVT","Canvas",10,10,1280,960) ;
   gPad->SetTopMargin(0.03);
@@ -485,7 +487,7 @@ void make_a_plot(TH1D *Comb_hist, double cv, double ecv, configuration *myconfig
   leg->SetHeader("VELO + T Station");
   temp = "A_{track}(" + myconfig->get_dim1_label() + ")";
   leg->AddEntry(Comb_hist,temp,"le1p");
-  temp = "#scale[0.8]{#int} d" + myconfig->get_dim1_label() + "A_{track}(" + myconfig->get_dim1_label() + ")";
+  temp = "#scale[0.8]{#int} d" + myconfig->get_dim1_symbol() + "A_{track}(" + myconfig->get_dim1_symbol() + ")";
   leg->AddEntry("cval",temp,"fl");
 
   leg->Draw();

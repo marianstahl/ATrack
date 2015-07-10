@@ -55,29 +55,39 @@ int main(int argc, char **argv){
     unc_Long.push_back(results.at(mode).combined_results.at(3));
   }
 
-  dmtx correlations = get_correlations(myconfig);
+  double comb_center,comb_unc,Long_center,Long_unc;
+  if(myconfig->get_nchannels() > 0){
+   dmtx correlations = get_correlations(myconfig);
 
-  if(myconfig->get_verbosity() > 0){
-    cout << endl << endl << "Correlation matrix Dalitz-regions:" << endl << endl;
-    for(unsigned int i = 0; i < correlations.at(0).size(); i++){
-      for(unsigned int j = 0; j < correlations.at(0).size(); j++){
-        printf("%.4f \t", correlations[i][j]);
+    if(myconfig->get_verbosity() > 0){
+      cout << endl << endl << "Correlation matrix for all channels:" << endl << endl;
+      for(unsigned int i = 0; i < correlations.at(0).size(); i++){
+        for(unsigned int j = 0; j < correlations.at(0).size(); j++){
+          printf("%.5f \t", correlations[i][j]);
+        }
+        cout << " " << endl;
       }
-      cout << " " << endl;
     }
+    comb_center = corr_comb(center_VT,unc_VT,correlations);
+    comb_unc = corr_comb_unc(unc_VT,correlations);
+    Long_center = corr_comb(center_Long,unc_Long,correlations);
+    Long_unc = corr_comb_unc(unc_Long,correlations);
+  }
+  else{
+    comb_center = center_VT.at(0);
+    comb_unc = unc_VT.at(0);
+    comb_Long = center_Long.at(0);
+    comb_unc_Long = unc_Long.at(0);
   }
 
-  double comb_center = corr_comb(center_VT,unc_VT,correlations);
-  double comb_unc = corr_comb_unc(unc_VT,correlations);
-  double Long_center = corr_comb(center_Long,unc_Long,correlations);
-  double Long_unc = corr_comb_unc(unc_Long,correlations);
+
   cout << endl << string(128, '*') << endl << endl << "Integrated " << myconfig->get_firstParticle() << myconfig->get_secondParticle() << " tracking asymmetries for "
        << myconfig->get_bw() << endl << endl;
   printf("Long\t\t\t( %+.3f +- %.3f ) %%\n", Long_center, Long_unc);
   printf("VELO + T Station\t\033[0;32m( %+.3f +- %.3f ) %%\033[0m\n\n", comb_center, comb_unc);
 
   ofstream resultfile;
-  temp = myconfig->get_dumpdir() + "Results/FullDP_" + myconfig->get_bw() + "_raw_VT";
+  temp = myconfig->get_dumpdir() + "Results/Integrated_" + myconfig->get_bw() + "_raw_VT";
   resultfile.open(temp);
   resultfile << comb_center << "\t" << comb_unc;
   resultfile.close();
@@ -216,7 +226,7 @@ three_vectors combine_asymmetries(configuration *myconfig){
       }
       A_mupi[i][j] = summation(A_mu_b) - summation(A_pi_b);
       dvec tmp_unc_for_comb = {summation_unc(delta_A_mu_b),summation_unc(delta_A_pi_b)};
-      dmtx mupi_correlation_matrix = {{1,mu_pi_correlations.at(j)},{mu_pi_correlations.at(j),1}};
+      dmtx mupi_correlation_matrix = {{1,-mu_pi_correlations.at(j)},{-mu_pi_correlations.at(j),1}};
       delta_A_mupi[i][j] = corr_comb_unc(tmp_unc_for_comb,mupi_correlation_matrix);
     }
   }
