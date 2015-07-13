@@ -3,12 +3,17 @@
   \date July, 1st 2015
   \author Marian Stahl
   \class configuration
-  \brief Change settings here if needed. Line 139ff : hardcoded stuff such as directories, file names, variable names, fitparameters etc.
+  \brief Change settings here if needed. Line 144ff : hardcoded stuff such as directories, file names, variable names, fitparameters etc.
 
 */
 
 #ifndef CONFIGURATION
 #define CONFIGURATION
+
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+
 #include "TString.h"
 #include "Riostream.h"
 #include "TSystem.h"
@@ -148,7 +153,10 @@ public:
 
     //This way of initialization allows that the TString returned from function<TString ()> dumpdir to change whenever dumpdir() is called.
     //In this way, dumpdir only needs to be initialied once here and can be used later even though version is not set yet
-    dumpdir = [&] () -> TString{return "/afs/cern.ch/work/m/mstahl/public/dumpdir/tracking_asymmetry_raw/" + version + "/";};//location where plots, results etc. will be dumped
+    dumpdir = [&] () -> TString{
+        TString dd = "/afs/cern.ch/work/m/mstahl/public/dumpdir/tracking_asymmetry_raw/" + version + "/";//location where plots, results etc. will be dumped
+        if(!gSystem->OpenDirectory(dd))gSystem->mkdir(dd);
+        return dd;};
     taptupledir = "/afs/cern.ch/work/m/mstahl/public/";//location of tag-and-probe tuples
     sigtupledir = "/afs/cern.ch/work/j/jadevrie/public/asls/ntuples/cutTuples_080515/";//location of signal tuples
     sweighttupledir = "/afs/cern.ch/work/m/mstahl/public/asls_sWeights/";//location of signal sWeight tuples
@@ -206,7 +214,7 @@ public:
          << "\t PT as first dimension" << endl
          << "\t ETA as second dimension" << endl
          << "No sample, tap method and Dalitz region defined yet!" << endl;
-  }  
+  }
 
   configuration(const TString jobname) : configuration(){
 
@@ -548,12 +556,16 @@ public:
   }
 
   template<class intlike>
-  void set_dim1_bin(intlike binnumber){
-    dim1_binlo = dim1_binedge_vector.at(binnumber);dim1_binhi = dim1_binedge_vector.at(binnumber + 1);
+  bool set_dim1_bin(intlike binnumber){
+    try{dim1_binlo = dim1_binedge_vector.at(binnumber);dim1_binhi = dim1_binedge_vector.at(binnumber + 1);}
+    catch(const out_of_range& oor){cerr << "Out of Range error: " << oor.what() << endl; return false;}
+    return true;
   }
   template<class intlike>
-  void set_dim2_bin(intlike binnumber){
-    dim2_binlo = dim2_binedge_vector.at(binnumber);dim2_binhi = dim2_binedge_vector.at(binnumber + 1);
+  bool set_dim2_bin(intlike binnumber){
+    try{dim2_binlo = dim2_binedge_vector.at(binnumber);dim2_binhi = dim2_binedge_vector.at(binnumber + 1);}
+    catch(const out_of_range& oor){cerr << "Out of Range error: " << oor.what() << endl; return false;}
+    return true;
   }
 
   double get_dim1_binlo(){return dim1_binlo;}

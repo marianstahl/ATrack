@@ -34,6 +34,8 @@ void make_1D_plots(const dten3 &A_raw, dten3 &delta_A_raw, configuration *myconf
   //copy binning-vectors to arrays to deal with root histograms
   double* dim1_binedges = new double[nbins_dim1+1];//copy(dim1_bev.begin(),dim1_bev.end(),dim1_binedges);<-- why does this not work?
   dvec dim1_bev = myconfig->get_dim1_binedges();
+  //make a quick table
+  make_Araw_table(A_raw,delta_A_raw,myconfig);
   copy(dim1_bev.begin(),dim1_bev.end(),dim1_binedges);
 
   if(myconfig->get_dim1().CompareTo("PT")==0){
