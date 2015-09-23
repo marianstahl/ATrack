@@ -238,7 +238,7 @@ three_vectors combine_asymmetries(configuration *myconfig){
   for(int i = 0; i < myconfig->get_nmethods() + 1; i++){
     //linear combination of polarities
     dvec linear_combination;dvec unc_linear_combination;
-    for(int ji = 0; ji < myconfig->get_nchannels()/2; ji++){
+    for(int ji = 0; ji < myconfig->get_nsamples()/2; ji++){
       linear_combination.push_back((A_mupi[i][2*ji]+A_mupi[i][2*ji+1])/2);
       unc_linear_combination.push_back(add_asymmetry_unc(delta_A_mupi[i][2*ji],delta_A_mupi[i][2*ji])/2);
     }
